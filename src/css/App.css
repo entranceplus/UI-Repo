@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  background-color: lightskyblue;
+  background-color: rgb(168, 190, 202);
   height: 130px;
   padding: 20px;
   color: black;
@@ -16,6 +16,11 @@
 
 .App-intro {
   font-size: large;
+}
+
+.app-css {
+  width: 50px;
+  border: 2px solid greenyellow;
 }
 
 @keyframes App-logo-spin {
