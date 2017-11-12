@@ -1,0 +1,51 @@
+ @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+
+html, body {
+  font-family: 'Lato', serif;  
+  color: black;
+}
+
+.navbar-default {
+  font-size: 1.15em;
+  font-weight: 400;
+  background-color: #006b96 !important;
+  padding: 10px;
+  border: 0px;
+  border-radius: 0px;
+}
+
+.navbar-default .navbar-nav>li>a:not(visited) {
+  color: white !important;
+}
+
+.navbar-default .navbar-nav>li>a:visited {
+    color: yellow;
+}
+
+.navbar-default .navbar-brand {
+  color: #002433 !important;
+}
+
+.navbar-default .navbar-brand:hover {
+  color: #ffffff;
+  text-shadow: 1px -1px 8px #b3e9ff;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  border: none;
+}
+.navbar-default .navbar-nav>.open>a {
+    background-color: #004059 !important;
+}
+
+#basic-nav-dropdown + .dropdown-menu {
+    background-color: #004059;
+    border: 0px;
+    border-radius: 2px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#basic-nav-dropdown + .dropdown-menu > li > a {
+    color: white;
+}

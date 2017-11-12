@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
-import App from '../src/containers/App';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
 import reducer from '../src/reducers/reducer.js';
+import Root from './routes/routes.js';
+import App from './containers/App';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -16,10 +16,17 @@ const store = createStore(reducer, compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
 
-ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('root')
-);
+
+if(localStorage.getItem("user_name")) {
+    ReactDOM.render(
+        <Root store={store} />,
+        document.getElementById('root')
+    );
+} else {
+    ReactDOM.render(
+        <App />,
+        document.getElementById('root')
+    );
+}
+
 registerServiceWorker();
