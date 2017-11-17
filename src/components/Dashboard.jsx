@@ -52,14 +52,14 @@ class DashboardComp extends Component {
 
 
     onSave() {
-        console.log(this.state.url);
-        console.log(this.state.tags);
         this.props.saveBookmark(this.state.url, this.state.tags, this.onSaveResponse.bind(this, this.state.url, this.state.tags));
 
     }
 
     onSaveResponse(url, tags, respJson) {
-        if (respJson.msg && respJson.msg === "Links recorded") {
+        console.log('at SaveResponse');
+        console.log(respJson.msg);
+        if (respJson.msg) {
             this.props.getBookmark();
         } else {
             alert('error while saving');

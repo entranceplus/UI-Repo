@@ -4,7 +4,6 @@ import * as actionTypes from '../../constants/actiontypes.js'
 
 export const saveBookMarkAction = (url, tags, saveCallback) => () => {
     bookmarkapi(url, tags, (response) => {
-        console.log(response);
         saveCallback(response);
     });
 };
