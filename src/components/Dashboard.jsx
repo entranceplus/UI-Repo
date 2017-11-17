@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from 'Header';
+import Header from './Header';
 import { connect } from 'react-redux';
 import TagsInput from 'react-tagsinput';
 import 'react-tagsinput/react-tagsinput.css';
