@@ -2,8 +2,11 @@
     margin-top: 24px;
 }
 
-input:focus {
-    border-color: #a5d24a;
+input:focus, .react-tagsinput--focused {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: none;
 }
 
 .url-input {
@@ -17,24 +20,52 @@ input:focus {
     outline: none;
     padding: 11px;
     width: 100%;
+    border-radius: 4px;
+}
+
+.react-tagsinput-tag {
+    border-radius: 4px;
+    background-color: lightgray;
+    border: 1px solid #ddd;
+    color:black;
+    padding: 6px;
+}
+
+.react-tagsinput {
+    border-radius: 4px;
 }
 
 #saveBookmark {
     padding: 9px 16px;
 }
 
-#list-view {
-    padding-left: 10.2%;
-    margin-top: 10%;
+.react-tagsinput-remove {
+    color: black;
 }
 
-li.list-group-item {
-    border-top-left-radius: 0px !important;
-    border-top-right-radius: 0px !important;
+#list-view {
+    padding-left: 10.2%;
+    margin-top: 5%;
 }
 
 span.badge {
     background-color: orange;
     padding: 5px 15px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.tag-div {
+    overflow: hidden;
+}
+
+.list-group-item {
+    background-color: lightblue !important;
+    border: none !important;
+}
+
+.list-group {
+    max-height: 500px;
+    overflow-y: auto;
 }
   

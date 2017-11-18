@@ -15,7 +15,9 @@ export function bookmarkapi(url, tags, actionCallback) {
     .catch(error => console.log(error));
 }
 
-export function bookmarkListapi() {
+export function bookmarkListapi(actionCallback) {
   client.get("/links")
     .then(response => response.data)
+    .then(json => actionCallback(json))
+    .catch(error => console.log(error));
 }

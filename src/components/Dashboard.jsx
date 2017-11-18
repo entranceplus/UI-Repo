@@ -7,7 +7,9 @@ import { saveBookMarkAction, getBookMarkAction } from '../actions/bookmarkAction
 import '../css/Dashboard.css';
 
 const mapStateToProps = (state) => {
-    //bookmarkList: this.state.bookmarkList
+    return {
+        bookmarkList: state.bookmarkListReducer.bookmarkList
+    };
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -15,8 +17,8 @@ const mapDispatchToProps = (dispatch) => {
         saveBookmark: (url, tags, callback) => {
             dispatch(saveBookMarkAction(url, tags, callback));
         },
-        getBookmark: () => {
-            dispatch(getBookMarkAction());
+        getBookmark: (callback) => {
+            dispatch(getBookMarkAction(callback));
         }
     };
 }
@@ -36,6 +38,10 @@ class DashboardComp extends Component {
 
     }
 
+    componentDidMount() {
+        this.props.getBookmark();
+    }
+
     handleInputChange(event) {
         const target = event.target;
         const value = target.value;
@@ -53,14 +59,20 @@ class DashboardComp extends Component {
 
     onSave() {
         this.props.saveBookmark(this.state.url, this.state.tags, this.onSaveResponse.bind(this, this.state.url, this.state.tags));
-
+        this.setState({
+            url: '',
+            tags: []
+        })
     }
 
     onSaveResponse(url, tags, respJson) {
         console.log('at SaveResponse');
         console.log(respJson.msg);
         if (respJson.msg) {
-            this.props.getBookmark();
+            this.props.getBookmark(() => {
+                console.log('at dashboard'); 
+                console.log(this.props.bookmarkList);
+            });            
         } else {
             alert('error while saving');
         }
@@ -75,7 +87,7 @@ class DashboardComp extends Component {
                         <div className="form-group col-sm-4 col-sm-offset-1">
                             <label className="control-label" htmlFor="url">Url</label>
                             <div className="">
-                                <input id="url" name="url" type="text" placeholder="bookmark url" className="url-input" required="" onChange={this.handleInputChange} />
+                                <input id="url" name="url" type="text" value={this.state.url} placeholder="bookmark url" className="url-input" required="" onChange={this.handleInputChange} />
                             </div>
                         </div>
                         <div className="form-group col-sm-4">
@@ -90,33 +102,36 @@ class DashboardComp extends Component {
                     </div> 
                 </form> 
                 
-                    <div className="col-sm-9" id="list-view">
-                        <ul className="list-group ticketView">
-                            <li className="list-group-item ticketView">
-                                <div className="col-sm-5">
-                                    <span className="badge pull-left">dkf</span>
-                                </div>
-                                skd ef wef ejflksdf
-                            </li>
-                            <li className="list-group-item ticketView">
-                                <div className="col-sm-5">
-                                    <span className="badge pull-left">dkf</span>
-                                </div>
-                                skdjflk wefsdf
-                            </li>  
-                            <li className="list-group-item ticketView">
-                                <div className="col-sm-5">
-                                    <span className="badge pull-left">dkf</span>
-                                </div>
-                                skdjfl wefwq efksdf
-                            </li>
-                        </ul>
-                    </div>
-                
+                <div className="col-sm-9" id="list-view">
+                    <ul className="list-group">
+                        {
+                            this.props.bookmarkList ? this.props.bookmarkList.map((list, index) => {
+                                var listTag = list.tags; 
+                                return (
+                                    <li key={index} className="list-group-item justify-content-between">
+                                        {list.url ? 
+                                            <a href={list.url}>{list.url}</a> : 'NO URL'} 
+                                        {
+                                            listTag.map(function (element, tagindex) {
+                                                return(
+                                                    <span key={tagindex} className="badge badge-default badge-pill">{element}</span>
+                                                )
+                                            })
+                                        }
+                                    </li>
+                                )
+                            }) : <li className="list-group-item ticketView">
+                                    <div className="col-sm-5">
+                                        <span>No Data avilable</span>
+                                    </div>
+                                </li>
+                        }
+                    </ul>
+                </div>
             </div>
-        )
+        );
     }
 }
 
-const Dashboard = connect(null, mapDispatchToProps)(DashboardComp);
+const Dashboard = connect(mapStateToProps, mapDispatchToProps)(DashboardComp);
 export default Dashboard;

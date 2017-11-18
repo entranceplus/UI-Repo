@@ -1,10 +1,10 @@
 export default function bookmarkListReducer(state = {
-    list: ''
+    bookmarkList: ''
 }, action) {
     switch (action.type) {
-        case 'GET_LIST':
+        case 'GET_BOOKMARK':
             return {
-                list: action.list
+                bookmarkList: action.list
             }
         default:
             return state;

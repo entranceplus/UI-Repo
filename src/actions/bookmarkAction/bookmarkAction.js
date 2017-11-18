@@ -1,6 +1,12 @@
 import { bookmarkapi, bookmarkListapi } from '../../services/bookmarklistapi';
 import * as actionTypes from '../../constants/actiontypes.js'
 
+function getBookMarkList(list) {
+    return {
+        type: actionTypes.GET_BOOKMARK,
+        list
+    }
+}
 
 export const saveBookMarkAction = (url, tags, saveCallback) => () => {
     bookmarkapi(url, tags, (response) => {
@@ -8,8 +14,9 @@ export const saveBookMarkAction = (url, tags, saveCallback) => () => {
     });
 };
 
-export const getBookMarkAction = () => (dispatch) => {
+export const getBookMarkAction = (callback) => (dispatch) => {
     bookmarkListapi( (response) => {
-        console.log(response);
+        dispatch(getBookMarkList(response));
+        callback && callback();
     });
 };
