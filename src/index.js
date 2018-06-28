@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from '../src/reducers/reducer.js';
 import Root from './routes/routes.js';
 import App from './containers/App';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'font-awesome/css/font-awesome.min.css';
+import { Provider } from 'react-redux';
 
 const store = createStore(reducer, compose(
     applyMiddleware(thunk),
@@ -24,7 +24,9 @@ if(localStorage.getItem("user_name")) {
     );
 } else {
     ReactDOM.render(
-        <App />,
+        <Provider store={store}>
+            <App />
+        </Provider>,
         document.getElementById('root')
     );
 }

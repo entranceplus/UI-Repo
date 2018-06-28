@@ -9,15 +9,23 @@
 	margin-bottom: 60px;
 }
 
-.form-signin {
+.hide-form {
+  display: none;
+}
+
+.show-form {
+  display: block;
+}
+
+.form-signin, .form-signup {
   max-width: 420px;
   padding: 30px 38px 66px;
   margin: 0 auto;
   background-color: #eee;
   border: 3px dotted rgba(0,0,0,0.1);  
-  }
+}
 
-.form-signin-heading {
+.form-signin-heading, .form-signup-heading {
   text-align:center;
   margin-bottom: 30px;
 }
@@ -55,4 +63,31 @@ input[type="password"] {
 #loginError {
 	color: red;
 	text-align: center;
+}
+
+.btn {
+  border-radius: 0px;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+  outline: none;
+}
+
+.btn-lg, .btn-group-lg>.btn {
+  border-radius: 0px;
+}
+
+.btn-link {
+  padding: 5px 10px 0px 0px;
+  color: #95a5a6;
+}
+
+.btn-link:hover, .btn-link:focus {
+  color: #2c3e50;
+  text-decoration: none;
 }
