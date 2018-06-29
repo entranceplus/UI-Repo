@@ -163,8 +163,11 @@ class LoginComp extends Component {
                                     <input  type="password" className="form-control" name="password" placeholder="Password" ref={(input) => { this.password = input; }} />
                                 </div>
                             </div>
-                            <input type="button" value="Sign In" className="btn btn-lg btn-primary btn-block" onClick={this.login}
-                                    onKeyPress={this.onKeyPress} />
+                            <button type="button" className="btn btn-lg btn-primary btn-block" onClick={this.login}
+                                    disabled={this.props.processingSignIn ? true : false}
+                                    onKeyPress={this.onKeyPress}>
+                                    {this.props.processingSignIn ? "Processing " : "Sign In "} {this.props.processingSignIn ? <i className="fa fa-circle-o-notch fa-spin"></i> : null }
+                            </button>
                             <div>
                                 <button id="register_login_btn" type="button" className="btn btn-link" onClick={this.showSignUp}>Register</button>
                                 <button id="register_lost_btn" type="button" className="btn btn-link">Lost Password?</button>
